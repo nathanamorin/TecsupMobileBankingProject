@@ -13,6 +13,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import BankServices.dao.CustomerDAO;
+import BankServices.modelo.Customer;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -59,7 +61,7 @@ public class BankRest {
 			vo = dao.insertar(vo);
 			System.out.println(vo.getIdProducto());
 			*/
-			jsonObj.put("return", "CURRECT");
+			
 			if (username == "")
 			{
 				jsonObj.put("return", "INCORRECT");
@@ -69,6 +71,17 @@ public class BankRest {
 			{
 				jsonObj.put("return", "INCORRECT");
 			}
+			jsonObj.put("return", "CURRECT");
+			jsonObj.put("return", "CURRECT");
+			CustomerDAO dao = new CustomerDAO();
+			
+			Customer customer = new Customer();
+			
+			customer = dao.getCustomerById(username);
+			
+			jsonObj.put("userID", customer.getIdUser());
+			jsonObj.put("password", customer.getPassword());
+			jsonObj.put("name", customer.getName());
 			
 			
 			

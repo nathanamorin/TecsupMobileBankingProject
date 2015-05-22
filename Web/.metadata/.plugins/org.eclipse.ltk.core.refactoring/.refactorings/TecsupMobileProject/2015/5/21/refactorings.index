@@ -27,3 +27,4 @@
 1432325170839	Rename type 'CopyOfCustomer'
 1432325177141	Encapsulate field 'securityQuestions'
 1432325252219	Encapsulate field 'securityQuestions'
+1432327031925	Rename type 'ProductoDAO'

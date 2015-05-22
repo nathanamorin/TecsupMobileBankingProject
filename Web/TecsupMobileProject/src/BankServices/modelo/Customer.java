@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public class Customer {
 
-	private int idUser;
+	private String idUser;
 	private String password;
 	private String name;
 	private String status;
@@ -13,7 +13,13 @@ public class Customer {
 	private Collection<SecurityQuestion> securityQuestions = new ArrayList<SecurityQuestion>();
 
 
-	public Customer(int idUser, String password, String name, String status,
+	public Customer() {
+		super();
+	}
+
+
+
+	public Customer(String idUser, String password, String name, String status,
 			String passwordChangeDate,
 			Collection<SecurityQuestion> securityQuestions) {
 		super();
@@ -35,11 +41,11 @@ public class Customer {
 		this.status = status;
 	}
 
-	public int getIdUser() {
+	public String getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(int idUser) {
+	public void setIdUser(String idUser) {
 		this.idUser = idUser;
 	}
 

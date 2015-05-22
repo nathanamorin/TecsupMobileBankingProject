@@ -10,7 +10,7 @@ public class ConexionBD {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/tienda", "root", "");
+			con = DriverManager.getConnection("jdbc:mysql://192.168.19.24/MyDB", "root", "");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
