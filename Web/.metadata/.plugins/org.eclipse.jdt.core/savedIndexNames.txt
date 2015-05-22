@@ -1,6 +1,5 @@
 INDEX VERSION 1.127+C:\Users\Alumno\TecsupMobileProject\TecsupMobileBankingProject\Web\.metadata\.plugins\org.eclipse.jdt.core
 1853242134.index
-1857612461.index
 2708055714.index
 4166835210.index
 2825064628.index
