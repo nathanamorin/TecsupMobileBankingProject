@@ -1,0 +1,65 @@
+package BankServices.modelo;
+
+public class DetallePedido {
+
+	private int idDetallePedido;
+	private Pedido pedido;
+	private Producto producto;
+	private double precio;
+	private int cantidad;
+
+	public DetallePedido() {
+
+	}
+
+	public DetallePedido(int idDetallePedido, Pedido pedido, Producto producto,
+			double precio, int cantidad) {
+		super();
+		this.idDetallePedido = idDetallePedido;
+		this.pedido = pedido;
+		this.producto = producto;
+		this.precio = precio;
+		this.cantidad = cantidad;
+	}
+
+	public int getIdDetallePedido() {
+		return idDetallePedido;
+	}
+
+	public void setIdDetallePedido(int idDetallePedido) {
+		this.idDetallePedido = idDetallePedido;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
+}

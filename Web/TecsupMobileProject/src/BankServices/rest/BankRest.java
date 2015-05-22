@@ -37,7 +37,6 @@ public class BankRest {
 	}
 	
 	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String login(@FormParam("username") String username, 
 							@FormParam("password") String password) {
@@ -60,7 +59,7 @@ public class BankRest {
 			vo = dao.insertar(vo);
 			System.out.println(vo.getIdProducto());
 			*/
-
+			jsonObj.put("return", "CURRECT");
 			if (username == "")
 			{
 				jsonObj.put("return", "INCORRECT");
@@ -70,6 +69,8 @@ public class BankRest {
 			{
 				jsonObj.put("return", "INCORRECT");
 			}
+			
+			
 			
 						
 		} catch (Exception e) {
