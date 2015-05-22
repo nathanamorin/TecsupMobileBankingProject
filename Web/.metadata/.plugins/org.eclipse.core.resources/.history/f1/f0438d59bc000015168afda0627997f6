@@ -1,0 +1,24 @@
+package trastienda.modelo;
+
+public class Dispositivo {
+
+	private String usuario;
+	private String codigoGCM;
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getCodigoGCM() {
+		return codigoGCM;
+	}
+
+	public void setCodigoGCM(String codigoGCM) {
+		this.codigoGCM = codigoGCM;
+	}
+
+}

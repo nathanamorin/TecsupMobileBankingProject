@@ -1,0 +1,29 @@
+1432313237319	Rename package 'trastienda.rest'
+1432313782717	Delete element
+1432320449170	Rename package 'login.rest'
+1432320481457	Rename type 'ProductosRest'
+1432323601311	Rename package 'trastienda.util'
+1432323682046	Rename compilation unit 'ConexionBD.java'
+1432323754620	Rename package 'trastienda.excepcion'
+1432324368710	Delete element
+1432324433457	Copy package
+1432324443637	Delete element
+1432324466126	Rename package 'trastienda.modelo'
+1432324494361	Rename package 'trastienda.dao'
+1432324532724	Rename package 'trastienda.util'
+1432324560312	Delete element
+1432324652311	Rename type 'Categoria'
+1432324715323	Rename field 'idCategoria'
+1432324761283	Rename field 'nombre'
+1432324825174	Rename field 'descripcion'
+1432324943596	Encapsulate field 'status'
+1432324973245	Encapsulate field 'idUser'
+1432324977787	Encapsulate field 'password'
+1432324981629	Encapsulate field 'name'
+1432324985843	Encapsulate field 'passwordChangeDate'
+1432324990024	Encapsulate field 'productos'
+1432325096324	Delete elements
+1432325132503	Copy compilation unit
+1432325170839	Rename type 'CopyOfCustomer'
+1432325177141	Encapsulate field 'securityQuestions'
+1432325252219	Encapsulate field 'securityQuestions'

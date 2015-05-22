@@ -1,0 +1,147 @@
+package trastienda.rest;
+
+import java.util.Collection;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import trastienda.dao.ProductoDAO;
+import trastienda.excepcion.DAOExcepcion;
+import trastienda.modelo.Categoria;
+import trastienda.modelo.Producto;
+
+@Path("/productos")
+public class ProductosRest {
+	
+	@GET
+	@Path("{nombre}")
+	@Produces(MediaType.APPLICATION_JSON + "; charset=utf-8")
+	public String buscarPorNombre( @PathParam("nombre") String nombre ) {
+
+		System.out.println("Dentro de buscarPorNombre() : nombre: " + nombre);
+		JSONArray arrayObj = new JSONArray();
+		
+		try {
+			ProductoDAO dao = new ProductoDAO();
+			Collection<Producto> productos =  dao.buscarPorNombre(nombre);
+			System.out.println(productos.size());
+			arrayObj.addAll(productos);
+			
+		} catch (DAOExcepcion e) {	
+			System.out.println(e.getMessage());
+		}
+		return arrayObj.toString();
+	}
+
+	@GET
+	@Path("/producto/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String obtenerPorId( @PathParam("id") int idProducto ) {		
+
+		System.out.println("Dentro de obtenerPorId()");
+		JSONObject jsonObj = new JSONObject();
+		
+		try {
+			ProductoDAO dao = new ProductoDAO();
+			Producto producto =  dao.obtenerProductoPorId(idProducto);
+			System.out.println(producto.getNombre());
+			jsonObj.put("idProducto", producto.getIdProducto());
+			jsonObj.put("nombre", producto.getNombre());
+			jsonObj.put("precio", producto.getPrecio());
+						
+		} catch (DAOExcepcion e) {	
+			System.out.println(e.getMessage());
+		}
+		return jsonObj.toString();
+	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String insertar(@FormParam("idCategoria") int idCategoria, 
+							@FormParam("nombre") String nombre, 
+							@FormParam("precio") double precio) {
+
+		System.out.println("Dentro de insertar(): " + nombre);
+
+		JSONObject jsonObj = new JSONObject();
+		
+		try {
+			ProductoDAO dao = new ProductoDAO();
+			
+			Producto vo = new Producto();
+			Categoria cvo = new Categoria();
+			cvo.setIdCategoria(idCategoria);
+			vo.setCategoria(cvo);
+			vo.setNombre(nombre);
+			vo.setPrecio(precio);
+			
+			vo = dao.insertar(vo);
+			System.out.println(vo.getIdProducto());
+			jsonObj.put("estado", "CORRECTO");
+						
+		} catch (DAOExcepcion e) {
+			jsonObj.put("estado", "FALLIDO");
+			System.out.println(e.getMessage());
+		}
+		return jsonObj.toString();
+	}
+	
+	@DELETE
+	@Path("/producto/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String eliminar( @PathParam("id") int idProducto ) {		
+
+		System.out.println("Dentro de eliminar(): ");
+		
+		JSONObject jsonObj = new JSONObject();
+		
+		try {
+			ProductoDAO dao = new ProductoDAO();
+			dao.eliminar(idProducto);
+			jsonObj.put("estado", "CORRECTO");
+						
+		} catch (DAOExcepcion e) {	
+			jsonObj.put("estado", "FALLIDO");
+			System.out.println(e.getMessage());
+		}
+		return jsonObj.toString();
+	}
+	
+	@PUT
+	@Path("{idProducto}/{nombre}/{precio}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String actualizar( @PathParam("idProducto") int idProducto, @PathParam("nombre") String nombre, @PathParam("precio") double precio) {		
+
+		System.out.println("Dentro de actualizar()");
+				
+		JSONObject jsonObj = new JSONObject();
+		
+		try {
+			ProductoDAO dao = new ProductoDAO();
+			
+			Producto vo = new Producto();
+			vo.setIdProducto(idProducto);
+			vo.setNombre(nombre);	
+			vo.setPrecio(precio);
+			
+			dao.actualizar(vo);
+			jsonObj.put("estado", "CORRECTO");
+						
+		} catch (DAOExcepcion e) {
+			jsonObj.put("estado", "FALLIDO");
+			System.out.println(e.getMessage());
+		}
+		return jsonObj.toString();
+	}
+}
