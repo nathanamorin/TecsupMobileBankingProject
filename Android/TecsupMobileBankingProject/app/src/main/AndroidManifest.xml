@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Withdrawal"
+            android:label="@string/title_activity_withdrawal" >
+        </activity>
+        <activity
+            android:name=".Login2"
+            android:label="@string/title_activity_login2" >
+        </activity>
     </application>
 
 </manifest>

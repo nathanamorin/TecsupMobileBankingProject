@@ -4,5 +4,7 @@
     <string name="app_name">TecsupMobileBankingProject</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_withdrawal">Withdrawal</string>
+    <string name="title_activity_login2">Login2</string>
 
 </resources>
