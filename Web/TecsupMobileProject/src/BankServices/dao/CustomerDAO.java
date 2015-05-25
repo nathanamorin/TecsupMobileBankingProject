@@ -1,12 +1,16 @@
 package BankServices.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import BankServices.excepcion.DAOExcepcion;
+//import BankServices.dao.String;
+import BankServices.excepcion.DAOExcepcion;
 import BankServices.modelo.Customer;
 import BankServices.excepcion.*;
 import BankServices.util.*;
@@ -43,6 +47,7 @@ public class CustomerDAO extends BaseDAO {
 		}
 		return customer;
 	}
-
-
 }
+	
+	
+	
