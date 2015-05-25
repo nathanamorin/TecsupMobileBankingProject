@@ -7,4 +7,7 @@
 <fullyQualifiedTypeName name="com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="BankServices.modelo.SecurityQuestion"/>
+<fullyQualifiedTypeName name="com.sun.org.apache.xerces.internal.impl.dv.xs.DateTimeDV"/>
+<fullyQualifiedTypeName name="BankServices.modelo.Account"/>
+<fullyQualifiedTypeName name="BankServices.modelo.Transaction"/>
 </qualifiedTypeNameHistroy>

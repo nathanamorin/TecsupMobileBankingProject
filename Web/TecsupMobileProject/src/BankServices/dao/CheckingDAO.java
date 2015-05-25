@@ -28,7 +28,7 @@ public class CheckingDAO extends BaseDAO {
 		ResultSet rs = null;
 		try {
 			con = ConexionBD.obtenerConexion();
-			String query = "select AccountNumber,CurrentBal,DateOpened,Status,InterestRate,AvailableBal,MinBal,Customer_userID from CheckingAccount";
+			String query = "select AccountNumber,CurrentBal,DateOpened,Status,InterestRate,AvailableBal,MinBal,Customer_userID from account";
 			stmt = con.prepareStatement(query);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
