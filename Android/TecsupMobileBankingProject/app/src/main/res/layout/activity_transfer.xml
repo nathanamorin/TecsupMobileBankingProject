@@ -1,14 +1,11 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context="edu.purdue.tech.tecsupmobilebankingproject.Transfer">
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-    >
+    <TableRow>
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,9 +27,7 @@
         />
     </TableRow>
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <TableRow>
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,15 +43,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/spinnerFrom"
             android:layout_column="1"
-
-
         />
 
         </TableRow>
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <TableRow>
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,9 +66,8 @@
         />
     </TableRow>
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <TableRow>
+
 
         <Button
             android:layout_width="wrap_content"
@@ -89,4 +79,5 @@
 
 
     </TableRow>
+
 </TableLayout>

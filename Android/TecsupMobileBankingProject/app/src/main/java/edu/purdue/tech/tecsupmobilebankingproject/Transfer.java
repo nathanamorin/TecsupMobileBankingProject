@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
+
 public class Transfer extends ActionBarActivity
 {
 
@@ -70,8 +71,7 @@ public class Transfer extends ActionBarActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
-            return true;
+        if (id == R.id.action_settings) return true;
 
         return super.onOptionsItemSelected(item);
     }
