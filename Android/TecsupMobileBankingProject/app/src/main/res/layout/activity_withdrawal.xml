@@ -30,7 +30,7 @@
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
+        android:id="@+id/spin_account"
         android:layout_weight="0" />
 
     <TextView
@@ -45,14 +45,14 @@
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/editText3"
+        android:id="@+id/withdrawal_amount"
         android:layout_weight="0" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
-        android:id="@+id/button2"
+        android:id="@+id/btnWithdrawalSubmit"
         android:layout_weight="0" />
 
 </LinearLayout>
