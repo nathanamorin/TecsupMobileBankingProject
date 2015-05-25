@@ -1,0 +1,56 @@
+package BankServices.modelo;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class Customer {
+
+	private int idUser;
+	private String password;
+	private String name;
+	private Collection<Producto> productos = new ArrayList<Producto>();
+
+	public Customer() {
+
+	}
+
+	public Customer(int idCategoria, String nombre, String descripcion) {
+		super();
+		this.idUser = idCategoria;
+		this.password = nombre;
+		this.name = descripcion;
+	}
+
+	public int getIdCategoria() {
+		return idUser;
+	}
+
+	public void setIdCategoria(int idCategoria) {
+		this.idUser = idCategoria;
+	}
+
+	public String getNombre() {
+		return password;
+	}
+
+	public void setNombre(String nombre) {
+		this.password = nombre;
+	}
+
+	public String getDescripcion() {
+		return name;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.name = descripcion;
+	}
+
+	public void setProductos(Collection<Producto> productos) {
+		this.productos = productos;
+	}
+
+	public Collection<Producto> getProductos() {
+		return productos;
+	}
+
+}

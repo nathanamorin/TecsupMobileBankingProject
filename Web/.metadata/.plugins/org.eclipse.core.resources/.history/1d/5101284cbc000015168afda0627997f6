@@ -1,0 +1,76 @@
+package BankServices.modelo;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class Pedido {
+	private int idPedido;
+	private Usuario usuario;
+	private String fecha;
+	private String estado;
+	private double total;
+	private Collection<DetallePedido> detalles = new ArrayList<DetallePedido>();
+
+	public Pedido() {
+
+	}
+
+	public Pedido(int idPedido, Usuario usuario, String fecha, String estado,
+			double total) {
+		super();
+		this.idPedido = idPedido;
+		this.usuario = usuario;
+		this.fecha = fecha;
+		this.estado = estado;
+		this.total = total;
+	}
+
+	public int getIdPedido() {
+		return idPedido;
+	}
+
+	public void setIdPedido(int idPedido) {
+		this.idPedido = idPedido;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public Collection<DetallePedido> getDetalles() {
+		return detalles;
+	}
+
+	public void setDetalles(Collection<DetallePedido> detalles) {
+		this.detalles = detalles;
+	}
+
+}
