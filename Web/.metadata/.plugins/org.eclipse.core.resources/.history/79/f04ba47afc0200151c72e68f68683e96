@@ -1,0 +1,89 @@
+package BankServices.rest;
+
+import java.util.Collection;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import BankServices.dao.CustomerDAO;
+import BankServices.modelo.Customer;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+@Path("/loginUserPass")
+public class BankRest {
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON + "; charset=utf-8")
+	public String Test( ) {
+
+		
+		JSONObject arrayObj = new JSONObject();
+		
+		try {
+			arrayObj.put("response","test");
+			
+			
+		} catch (Exception e) {	
+			System.out.println(e.getMessage());
+		}
+		return arrayObj.toString();
+	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String login(@FormParam("username") String username, 
+							@FormParam("password") String password,
+							@DefaultValue("none") @FormParam("securityAnswer") String securityAnswer, 
+							@DefaultValue("none") @FormParam("securityQuestionID") Integer securityQuestionID){
+
+
+
+		JSONObject jsonObj = new JSONObject();
+		
+		try {
+			if (username == "" || username == null)
+			{
+				jsonObj.put("return", "errorUsername");
+				return jsonObj.toString();
+			}
+			
+			else if (password == "" || password == null)
+			{
+				jsonObj.put("return", "errorPassword");
+				return jsonObj.toString();
+			}
+			
+			
+			CustomerDAO dao = new CustomerDAO();
+			Customer customer = new Customer();
+			customer = dao.getCustomerById(username);
+			customer.
+			
+			//jsonObj.put("userID", customer.getIdUser());
+			//jsonObj.put("password", customer.getPassword());
+			//jsonObj.put("name", customer.getName());
+			
+			if (password != customer.getPassword());
+			
+			
+			
+						
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return jsonObj.toString();
+	}
+	
+
+}

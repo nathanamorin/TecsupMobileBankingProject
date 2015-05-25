@@ -1,0 +1,57 @@
+package BankServices.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import BankServices.modelo.Customer;
+import BankServices.excepcion.*;
+import BankServices.util.*;
+
+public class CustomerDAO extends BaseDAO {
+
+	public Customer getCustomerById(String idCustomer) throws DAOExcepcion {
+		Customer customer = new Customer();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			
+			String query = "select * from Customer";
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			//stmt.setString(1, idCustomer);
+		
+
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				customer.setIdUser(rs.getString("userID"));
+				System.out.println(rs.getString("userID"));
+				customer.setPassword(rs.getString("password"));
+				System.out.println(rs.getString("password"));
+				customer.setName(rs.getString("firstName") + " " + rs.getString("LastName"));	
+			}
+			else
+			{
+				System.out.println("No Data");
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			System.out.println("Error");
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return customer;
+	}
+
+
+}

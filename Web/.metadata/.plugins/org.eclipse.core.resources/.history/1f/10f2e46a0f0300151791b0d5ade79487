@@ -1,0 +1,23 @@
+package BankServices.modelo;
+
+
+
+public class Deposit {
+
+	private int DepositID;
+	private double Amount;
+	
+	
+	
+
+	
+	public Deposit() {
+		super();
+	}
+
+
+
+
+
+
+}

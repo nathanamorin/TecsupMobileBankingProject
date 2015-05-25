@@ -2,6 +2,9 @@ package BankServices.modelo;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
+
+
 
 public class Customer {
 
@@ -76,9 +79,36 @@ public class Customer {
 	public Collection<SecurityQuestion> getSecurityQuestions() {
 		return securityQuestions;
 	}
+	public SecurityQuestion getSecurityQuestion(int questionID) {
+		for (SecurityQuestion question : this.securityQuestions)
+		{
+			if (question.getIdQuestion() == questionID) return question;
+		}
+		
+		return null;
+	}
+	
+	public SecurityQuestion getRandomSecurityQuestion() {
+		Random generator = new Random(); 
+		int i = generator.nextInt(this.securityQuestions.size());
+		for (SecurityQuestion question : this.securityQuestions)
+		{
+			if (i <= 0) return question;
+			i--;
+		}
+		
+		return null;
+	}
 
 	public void setSecurityQuestions(Collection<SecurityQuestion> securityQuestions) {
 		this.securityQuestions = securityQuestions;
+	}
+	public void setSecurityQuestion(SecurityQuestion securityQuestion) {
+		this.securityQuestions.add(securityQuestion);
+	}
+	public void setSecurityQuestion(int id, String question, String answer) {
+		SecurityQuestion SQ = new SecurityQuestion(id,question,answer);
+		this.securityQuestions.add(SQ);
 	}
 
 

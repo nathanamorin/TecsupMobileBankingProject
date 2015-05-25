@@ -1,0 +1,23 @@
+package BankServices.modelo;
+
+
+
+public class Transaction {
+
+	private int DepositID;
+	private double Amount;
+	
+	
+	
+
+	
+	public Transaction() {
+		super();
+	}
+
+
+
+
+
+
+}

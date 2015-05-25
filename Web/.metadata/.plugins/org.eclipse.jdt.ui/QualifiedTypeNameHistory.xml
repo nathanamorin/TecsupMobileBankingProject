@@ -2,4 +2,9 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="BankServices.dao.CustomerDAO"/>
 <fullyQualifiedTypeName name="BankServices.modelo.Customer"/>
+<fullyQualifiedTypeName name="javax.ws.rs.DefaultValue"/>
+<fullyQualifiedTypeName name="BankServices.dao.SecurityQuestionDAO"/>
+<fullyQualifiedTypeName name="com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="BankServices.modelo.SecurityQuestion"/>
 </qualifiedTypeNameHistroy>

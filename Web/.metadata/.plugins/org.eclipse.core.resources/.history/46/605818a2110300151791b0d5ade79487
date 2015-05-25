@@ -1,0 +1,74 @@
+package BankServices.modelo;
+
+
+
+public class SavingsAccount {
+
+	private int AccountNumber;
+	private double CurrentBal;
+	private String Status;
+	private double InterestRate;
+	private double AvailableBal;
+	private double MinBal;
+	
+	
+	public SavingsAccount() {
+		super();
+	}
+
+
+	public SavingsAccount(int accountNumber, double currentBal, String status,
+			double interestRate, double availableBal, double minBal) {
+		super();
+		AccountNumber = accountNumber;
+		CurrentBal = currentBal;
+		Status = status;
+		InterestRate = interestRate;
+		AvailableBal = availableBal;
+		MinBal = minBal;
+	}
+	
+	
+	public int getAccountNumber() {
+		return AccountNumber;
+	}
+	public void setAccountNumber(int accountNumber) {
+		AccountNumber = accountNumber;
+	}
+	public double getCurrentBal() {
+		return CurrentBal;
+	}
+	public void setCurrentBal(double currentBal) {
+		CurrentBal = currentBal;
+	}
+	public String getStatus() {
+		return Status;
+	}
+	public void setStatus(String status) {
+		Status = status;
+	}
+	public double getInterestRate() {
+		return InterestRate;
+	}
+	public void setInterestRate(double interestRate) {
+		InterestRate = interestRate;
+	}
+	public double getAvailableBal() {
+		return AvailableBal;
+	}
+	public void setAvailableBal(double availableBal) {
+		AvailableBal = availableBal;
+	}
+	public double getMinBal() {
+		return MinBal;
+	}
+	public void setMinBal(double minBal) {
+		MinBal = minBal;
+	}
+	
+	
+
+
+
+
+}

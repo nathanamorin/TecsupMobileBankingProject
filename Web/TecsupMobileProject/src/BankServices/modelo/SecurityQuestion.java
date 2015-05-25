@@ -1,7 +1,6 @@
 package BankServices.modelo;
 
-import java.util.ArrayList;
-import java.util.Collection;
+
 
 public class SecurityQuestion {
 
@@ -18,6 +17,11 @@ public class SecurityQuestion {
 	}
 	
 	
+	public SecurityQuestion() {
+		super();
+	}
+
+
 	public int getIdQuestion() {
 		return idQuestion;
 	}

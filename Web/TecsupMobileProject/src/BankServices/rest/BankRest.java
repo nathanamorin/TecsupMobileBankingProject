@@ -1,21 +1,24 @@
 package BankServices.rest;
 
-import java.util.Collection;
+
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
+
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
+
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import BankServices.dao.CustomerDAO;
+import BankServices.dao.SecurityQuestionDAO;
 import BankServices.modelo.Customer;
-import net.sf.json.JSONArray;
+import BankServices.modelo.SecurityQuestion;
+
 import net.sf.json.JSONObject;
 
 @Path("/loginUserPass")
@@ -39,57 +42,78 @@ public class BankRest {
 	}
 	
 	@POST
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String login(@FormParam("username") String username, 
-							@FormParam("password") String password) {
+							@FormParam("password") String password,
+							@FormParam("securityAnswer") String securityAnswer, 
+							@FormParam("securityQuestionID") Integer securityQuestionID){
 
 
 
 		JSONObject jsonObj = new JSONObject();
 		
 		try {
-			/*
-			ProductoDAO dao = new ProductoDAO();
-			
-			Producto vo = new Producto();
-			Categoria cvo = new Categoria();
-			cvo.setIdCategoria(idCategoria);
-			vo.setCategoria(cvo);
-			vo.setNombre(nombre);
-			vo.setPrecio(precio);
-			
-			vo = dao.insertar(vo);
-			System.out.println(vo.getIdProducto());
-			*/
-			
-			if (username == "")
+			if (username == "" || username == null)
 			{
-				jsonObj.put("return", "INCORRECT");
+				jsonObj.put("return", "errorUsername");
+				return jsonObj.toString();
 			}
 			
-			else if (password == "")
+			else if (password == "" || password == null)
 			{
-				jsonObj.put("return", "INCORRECT");
+				jsonObj.put("return", "errorPassword");
+				return jsonObj.toString();
 			}
-			jsonObj.put("return", "CURRECT");
-			jsonObj.put("return", "CURRECT");
+			
+			
 			CustomerDAO dao = new CustomerDAO();
+			Customer customer = dao.getCustomerById(username);
+			SecurityQuestionDAO SQdao = new SecurityQuestionDAO();
 			
-			Customer customer = new Customer();
+			SQdao.getQuestionByCustomerId(customer);
 			
-			customer = dao.getCustomerById(username);
+			//jsonObj.put("userID", customer.getIdUser());
+			//jsonObj.put("password", customer.getPassword());
+			//jsonObj.put("name", customer.getName());
 			
-			jsonObj.put("userID", customer.getIdUser());
-			jsonObj.put("password", customer.getPassword());
-			jsonObj.put("name", customer.getName());
+			if (!password.equals(customer.getPassword()))
+			{
+				jsonObj.put("return", "errorPassword");
+				jsonObj.put("test", customer.getPassword());
+				jsonObj.put("input", password);
+				return jsonObj.toString();
+			}
+			
+			if (securityAnswer == null || securityAnswer == "" || securityQuestionID == null)
+			{
+				jsonObj.put("return", "needSecurityQuestion");
+				SecurityQuestion SQ = customer.getRandomSecurityQuestion();
+				jsonObj.put("securityQuestionID", SQ.getIdQuestion());
+				jsonObj.put("securityQuestion", SQ.getQuestion());
+				return jsonObj.toString();
+			}
+			
+			SecurityQuestion ResponseSQ = customer.getSecurityQuestion(securityQuestionID);
+			if (ResponseSQ == null)
+			{
+				jsonObj.put("return", "invalidSQid");
+				return jsonObj.toString();
+			}
+			
+			if (!securityAnswer.equals(ResponseSQ.getAnswer()) )
+			{
+				jsonObj.put("return", "incorrectSQAnswer");
+				return jsonObj.toString();
+			}
 			
 			
 			
 						
 		} catch (Exception e) {
-			jsonObj.put("return", "INCORRECT");
 			System.out.println(e.getMessage());
 		}
+		jsonObj.put("return", "success");
 		return jsonObj.toString();
 	}
 	

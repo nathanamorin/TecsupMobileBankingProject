@@ -1,0 +1,79 @@
+package BankServices.modelo;
+
+import com.sun.org.apache.xerces.internal.impl.dv.xs.DateTimeDV;
+
+
+
+
+public class Transaction {
+
+	private int ID;
+	private DateTimeDV TransactionDateTime;
+	private double Amount;
+	
+	
+	public Transaction() {
+		super();
+	}
+
+
+
+
+
+	public Transaction(int iD, DateTimeDV transactionDateTime, double amount,
+			String description) {
+		super();
+		ID = iD;
+		TransactionDateTime = transactionDateTime;
+		Amount = amount;
+	}
+
+
+
+
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+
+
+
+
+	public DateTimeDV getTransactionDateTime() {
+		return TransactionDateTime;
+	}
+
+
+
+
+
+	public void setTransactionDateTime(DateTimeDV transactionDateTime) {
+		TransactionDateTime = transactionDateTime;
+	}
+
+
+
+
+
+	public double getAmount() {
+		return Amount;
+	}
+
+
+
+
+
+	public void setAmount(double amount) {
+		Amount = amount;
+	}
+
+
+
+
+
+
+
+
+
+}
