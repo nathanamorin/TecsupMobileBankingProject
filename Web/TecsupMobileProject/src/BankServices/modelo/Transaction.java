@@ -1,6 +1,6 @@
 package BankServices.modelo;
 
-import com.sun.org.apache.xerces.internal.impl.dv.xs.DateTimeDV;
+import java.sql.Timestamp;
 
 
 
@@ -8,7 +8,7 @@ import com.sun.org.apache.xerces.internal.impl.dv.xs.DateTimeDV;
 public class Transaction {
 
 	private int ID;
-	private DateTimeDV TransactionDateTime;
+	private Timestamp TransactionDateTime;
 	private double Amount;
 	private String TransactionType;
 	private String Description;
@@ -19,7 +19,7 @@ public class Transaction {
 
 
 
-	public Transaction(int iD, DateTimeDV transactionDateTime, double amount,
+	public Transaction(int iD, Timestamp transactionDateTime, double amount,
 			String transactionType, String description) {
 		super();
 		ID = iD;
@@ -55,7 +55,7 @@ public class Transaction {
 
 
 
-	public void setTransactionDateTime(DateTimeDV transactionDateTime) {
+	public void setTransactionDateTime(Timestamp transactionDateTime) {
 		TransactionDateTime = transactionDateTime;
 	}
 

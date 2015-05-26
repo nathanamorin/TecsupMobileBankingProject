@@ -4,26 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-
-
-
-
-
+import java.util.ArrayList;
+import java.util.List;
 import BankServices.modelo.Account;
-import BankServices.modelo.Customer;
 import BankServices.modelo.Transaction;
-import BankServices.excepcion.*;
 import BankServices.util.*;
 
 public class TransactionDAO extends BaseDAO {
 
 	
-	public void AddTransaction(Account account, Transaction transaction)
+	public void addTransaction(Account account, Transaction transaction)
 	{
-		String queryAccount = "update " + account.getAccountName() + " SET CurrentBal=? where AccountNumber=?";
+		String queryAccount = "update Account SET CurrentBal=? where AccountNumber=?";
 		String queryTransaction = "insert into " + transaction.getTransactionType() 
-				+ " (Date, Amount, Description, "+ account.getAccountName() + "_AccountNumber) "
+				+ " (Date, Amount, Description, Account_AccountNumber) "
 				+ "VALUES ( NOW(),?,?,?)";
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -56,44 +50,45 @@ public class TransactionDAO extends BaseDAO {
 		}
 		
 	}
-	/*
-	public void AddTransaction(Account accountTo, Account accountFrom, Transaction transaction)
+
+	public List<Transaction> getTransactions()
 	{
-		String queryAccountTo = "update " + accountTo.getAccountName() + " SET CurrentBal=? where AccountNumber=?";
-		String queryAccountFrom = "update " + accountFrom.getAccountName() + " SET CurrentBal=? where AccountNumber=?";
-		String queryTransaction = "insert into " + transaction.getTransactionType() 
-				+ " (Date, Amount, Description, "+ account.getAccountName() + "_AccountNumber) "
-				+ "VALUES ( NOW(),?,?,?)";
+		String queryAccount = "select * from Withdraw UNION Deposit UNION Transfer";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
+		List<Transaction> transactions = new ArrayList<Transaction>();
 		
 		try{
 		con = ConexionBD.obtenerConexion();
 		stmt = con.prepareStatement(queryAccount);
-		double currentBal = account.getCurrentBal() + transaction.getAmount();
+		rs = stmt.executeQuery();
+
+		while (rs.next())
+		{
+			//Get Transactions
+			Transaction t = new Transaction(rs.getInt("ID"), rs.getTimestamp("Date"), rs.getDouble("Amount"), null,rs.getString("Description"));
+			transactions.add(t);
+			
+		}
 		
-		stmt.setDouble(1, currentBal);
-		stmt.setString(2, account.getAccountNumber());
-		stmt.executeUpdate();
 		
-		stmt = con.prepareStatement(queryTransaction);
-		stmt.setDouble(1, transaction.getAmount());
-		stmt.setString(2, transaction.getDescription());
-		stmt.setString(3, account.getAccountNumber());
-		stmt.executeUpdate();
 		
 		}
 		
 		
 		catch (SQLException e) {
 			System.err.println(e.getMessage());
-		} finally {
+		} 
+		finally {
 			this.cerrarResultSet(rs);
 			this.cerrarStatement(stmt);
 			this.cerrarConexion(con);
+			
 		}
-		*/
+		return transactions;
+		
+	}
 	}
 
 

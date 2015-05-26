@@ -19,17 +19,17 @@ import BankServices.dao.*;
 
 public class Login {
 
-	public boolean checkLogin(String username, String password) throws DAOExcepcion
+	public SecurityQuestion doLogin(String username, String password) throws DAOExcepcion
 	{
 		
 		if (username == "" || username == null)
 		{
-			return false;
+			return null;
 		}
 		
 		else if (password == "" || password == null)
 		{
-			return false;
+			return null;
 		}
 		
 		
@@ -42,15 +42,62 @@ public class Login {
 		
 		if (!password.equals(customer.getPassword()))
 		{
-			return false;
+			return null;
 		}
 		
-		return true;
+		return customer.getRandomSecurityQuestion();
 		
 		
 	}
 	
-	public boolean getStudent()
+	public Customer doLogin(String username, String password, Integer securityQuestionID, String securityAnswer) throws DAOExcepcion
+	{
+		
+		if (username == "" || username == null)
+		{
+			return null;
+		}
+		
+		else if (password == "" || password == null)
+		{
+			return null;
+		}
+		
+		
+		CustomerDAO dao = new CustomerDAO();
+		Customer customer = dao.getCustomerById(username);
+		SecurityQuestionDAO SQdao = new SecurityQuestionDAO();
+		
+		SQdao.getQuestionByCustomerId(customer);
+		
+		
+		if (!password.equals(customer.getPassword()))
+		{
+			return null;
+		}
+
+
+
+		if (securityAnswer == null || securityAnswer == "" || securityQuestionID == null)
+		{
+			return null;
+		}
+		
+		SecurityQuestion ResponseSQ = customer.getSecurityQuestion(securityQuestionID);
+		if (ResponseSQ == null)
+		{
+			return null;
+		}
+		
+		if (!securityAnswer.equals(ResponseSQ.getAnswer()) )
+		{
+			return null;
+		}
+		
+		return customer;
+		
+		
+	}
 	
 
 }

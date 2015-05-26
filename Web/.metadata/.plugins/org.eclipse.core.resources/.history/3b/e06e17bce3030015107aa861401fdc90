@@ -1,0 +1,69 @@
+package BankLogic;
+
+import java.io.IOException;
+import java.util.Collection;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONObject;
+
+import com.mysql.jdbc.Connection;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
+import BankServices.modelo.*;
+import BankServices.excepcion.*;
+import BankServices.dao.*;
+
+public class TransactionLogic {
+
+	public void addTransaction(Account account, Transaction transaction)
+	{
+		String queryAccount = "update Account SET CurrentBal=? where AccountNumber=?";
+		String queryTransaction = "insert into " + transaction.getTransactionType() 
+				+ " (Date, Amount, Description, "+ account.getAccountName() + "_AccountNumber) "
+				+ "VALUES ( NOW(),?,?,?)";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try{
+		con = ConexionBD.obtenerConexion();
+		stmt = con.prepareStatement(queryAccount);
+		double currentBal = account.getCurrentBal() + transaction.getAmount();
+		
+		stmt.setDouble(1, currentBal);
+		stmt.setString(2, account.getAccountNumber());
+		stmt.executeUpdate();
+		
+		stmt = con.prepareStatement(queryTransaction);
+		stmt.setDouble(1, transaction.getAmount());
+		stmt.setString(2, transaction.getDescription());
+		stmt.setString(3, account.getAccountNumber());
+		stmt.executeUpdate();
+		
+		}
+		
+		
+		catch (SQLException e) {
+			System.err.println(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		
+	}
+
+	public void getTransaction(Account account, BankLogic.Transaction transaction)
+	{
+		TransactionDAO dao = new TransactionDAO();
+		List<Transaction> transactions = dao.getTransactions(account, transaction)
+		
+	}
+	
+
+}

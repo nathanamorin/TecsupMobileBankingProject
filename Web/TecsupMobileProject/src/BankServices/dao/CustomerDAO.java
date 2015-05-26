@@ -53,7 +53,7 @@ public class CustomerDAO extends BaseDAO {
 		}
 		return customer;
 	}
-<<<<<<< HEAD
+
 	
 	public void changeAttr(Customer customer)
 	{
@@ -82,8 +82,6 @@ public class CustomerDAO extends BaseDAO {
 	
 
 
-=======
->>>>>>> 97953e54fce3e94fdd74b12b0d1868cdff66b61f
 }
 	
 	

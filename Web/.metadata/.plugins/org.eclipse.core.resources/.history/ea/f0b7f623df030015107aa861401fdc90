@@ -1,0 +1,5 @@
+package BankLogic;
+
+public class Transaction {
+
+}
