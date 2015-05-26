@@ -5,7 +5,7 @@
 
     tools:context="edu.purdue.tech.tecsupmobilebankingproject.TransactionList"
     android:orientation="vertical"
-    android:id="@+id/">
+    android:id="@+id/linear1">
 
     <TextView
         android:layout_width="wrap_content"
