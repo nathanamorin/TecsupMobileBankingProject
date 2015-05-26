@@ -1,5 +1,7 @@
 package edu.purdue.tech.tecsupmobilebankingproject;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -49,29 +51,50 @@ public class Withdrawal extends ActionBarActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                String Saving_Account = "000001";
-                String Checking_Account = "010001";
+                final String Saving_Account = "000001";
+                final String Checking_Account = "010001";
 
-                String str = ("Withdrawal Amt: " + eText.getText().toString());
-                Toast msg = Toast.makeText(getBaseContext(),str,Toast.LENGTH_LONG);
-                msg.show();
-                
+                // BEGIN DIALOG BOX
 
-                String selected = sItems.getSelectedItem().toString();
-                if (selected.equals("Checking")) {
-                    String account_str = ("Acct: Checking:" + Saving_Account);
-                    Toast account_msg = Toast.makeText(getBaseContext(),account_str,Toast.LENGTH_LONG);
-                    account_msg.show();
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                String str = ("Withdrawal Amt: " + eText.getText().toString());
+                                Toast msg = Toast.makeText(getBaseContext(),str,Toast.LENGTH_LONG);
+                                msg.show();
 
-                    execute_withdrawal(Float.parseFloat(eText.getText().toString()),Checking_Account);
-                }
-                if (selected.equals("Savings")) {
-                    String account_str = ("Acct: Savings:" + Checking_Account);
-                    Toast account_msg = Toast.makeText(getBaseContext(),account_str,Toast.LENGTH_LONG);
-                    account_msg.show();
+                                String selected = sItems.getSelectedItem().toString();
+                                if (selected.equals("Checking")) {
+                                    String account_str = ("Acct: Checking:" + Saving_Account);
+                                    Toast account_msg = Toast.makeText(getBaseContext(),account_str,Toast.LENGTH_LONG);
+                                    account_msg.show();
 
-                    execute_withdrawal(Float.parseFloat(eText.getText().toString()),Saving_Account);
-                }
+                                    execute_withdrawal(Float.parseFloat(eText.getText().toString()),Checking_Account);
+                                }
+                                if (selected.equals("Savings")) {
+                                    String account_str = ("Acct: Savings:" + Checking_Account);
+                                    Toast account_msg = Toast.makeText(getBaseContext(),account_str,Toast.LENGTH_LONG);
+                                    account_msg.show();
+
+                                    execute_withdrawal(Float.parseFloat(eText.getText().toString()),Saving_Account);
+                                }
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Withdrawal.this);
+                builder.setMessage("Are you sure you want to Withdraw $" + eText.getText().toString()).setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+
 
             }
         });
