@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MobileBanking</string>
+    <string name="drawer_abierto">Menú Abierto</string>
+    <string name="drawer_cerrado">Menú Cerrado</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_deposit">DepositActivity</string>
+    <string name="title_activity_checking_detail">CheckingDetail</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_login_questions">LoginQuestions</string>
+</resources>
