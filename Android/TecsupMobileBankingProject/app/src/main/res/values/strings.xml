@@ -11,9 +11,9 @@
     <string name="title_saving_account_num">00001</string>
     <string name="title_checking_account_num">01001</string>
 
-    <string name="transferFromLabel">From:</string>
-    <string name="transferCurrentBalanceLabel">Current Balance:</string>
-    <string name="transferAmountLabel">Amount:</string>
+    <string name="transferFromLabel">From: </string>
+    <string name="transferCurrentBalanceLabel">Current Balance: </string>
+    <string name="transferAmountLabel">Amount: </string>
     <string name="transferButtonText">Request Transfer</string>
     <string name="checkingToSavingsItem">Checking to Savings</string>
     <string name="savingsToCheckingItem">Savings to Checking</string>

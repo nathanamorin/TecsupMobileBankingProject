@@ -46,6 +46,11 @@ public class Transfer extends ActionBarActivity
             else
             {
                 //Apply the transfer to the database via SQL?
+                if (fromSpinner == 0)
+                    Toast.makeText(getApplicationContext(), ("(insert checking SQL stuff here)"), Toast.LENGTH_SHORT).show();
+                else if (fromSpinner == 1)
+                    Toast.makeText(getApplicationContext(), ("(insert savings SQL stuff here)"), Toast.LENGTH_SHORT).show();
+
             }
         }
     }
@@ -80,13 +85,13 @@ public class Transfer extends ActionBarActivity
                         {
                             //Get the current amount of money in Checking from the database
                             //
-                            txt.setText("(SQL not implemented)"); //display it
+                            txt.setText("(Checking account SQL)"); //display it
                         }
                         if (position==1)
                         {
                             //Get the current amount of money in Savings from the database
                             //
-                            txt.setText("(SQL not implemented)"); //display it
+                            txt.setText("(Savings account SQL)"); //display it
                         }
                     }
                     @Override
