@@ -48,21 +48,29 @@ public class Withdrawal extends ActionBarActivity {
 
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String str = eText.getText().toString();
+
+                String Saving_Account = "000001";
+                String Checking_Account = "010001";
+
+                String str = ("Withdrawal Amt: " + eText.getText().toString());
                 Toast msg = Toast.makeText(getBaseContext(),str,Toast.LENGTH_LONG);
                 msg.show();
-                //msg.show();
+                
 
                 String selected = sItems.getSelectedItem().toString();
                 if (selected.equals("Checking")) {
-                    String account_str = "Checking";
+                    String account_str = ("Acct: Checking:" + Saving_Account);
                     Toast account_msg = Toast.makeText(getBaseContext(),account_str,Toast.LENGTH_LONG);
                     account_msg.show();
+
+                    execute_withdrawal(Float.parseFloat(eText.getText().toString()),Checking_Account);
                 }
                 if (selected.equals("Savings")) {
-                    String account_str = "Savings";
+                    String account_str = ("Acct: Savings:" + Checking_Account);
                     Toast account_msg = Toast.makeText(getBaseContext(),account_str,Toast.LENGTH_LONG);
                     account_msg.show();
+
+                    execute_withdrawal(Float.parseFloat(eText.getText().toString()),Saving_Account);
                 }
 
             }
@@ -85,4 +93,26 @@ public class Withdrawal extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public boolean execute_withdrawal(float amount, String account_num) {
+        float acc_balance = (float)100.00;
+
+        if (amount > acc_balance)
+        {
+            String error = "Insufficient Funds";
+            Toast error_msg = Toast.makeText(getBaseContext(),error,Toast.LENGTH_LONG);
+            error_msg.show();
+            return false;
+        }
+
+        acc_balance = acc_balance - amount;
+        String str = Float.toString(acc_balance);
+        Toast str_msg = Toast.makeText(getBaseContext(),str,Toast.LENGTH_LONG);
+        str_msg.show();
+
+
+        return true;
+    }
+
+
 }
