@@ -1,0 +1,70 @@
+package BankServlets;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import BankLogic.LoginLogic;
+import BankServices.excepcion.DAOExcepcion;
+import BankServices.modelo.Customer;
+
+/**
+ * Servlet implementation class Login
+ */
+@WebServlet("/Login")
+public class Login extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Login() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String username = (String) request.getAttribute("username");
+		String password = (String) request.getAttribute("password");
+		Integer securityQuestionID = (Integer) request.getAttribute("securityQuestionID");
+		String securityAnswer = (String) request.getAttribute("securityAnswer");
+		Customer customer = null;
+		
+		LoginLogic l = new LoginLogic();
+		
+		try {
+			
+			customer = l.doLogin(username, password, securityQuestionID, securityAnswer);
+		} 
+		catch (DAOExcepcion e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if (customer == null)
+		{
+			request.setAttribute("RESUL", "Incorrect Password");
+			request.
+		}
+		else
+		{
+			
+		}
+	}
+
+}

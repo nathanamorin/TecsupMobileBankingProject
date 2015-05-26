@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import BankServices.modelo.Account;
 import BankServices.modelo.Transaction;
 import BankServices.util.*;
@@ -51,9 +52,9 @@ public class TransactionDAO extends BaseDAO {
 		
 	}
 
-	public List<Transaction> getTransactions()
+	public List<Transaction> getTransactions(Account account)
 	{
-		String queryAccount = "select * from Withdraw UNION Deposit UNION Transfer";
+		String queryAccount = "select * from Withdraw UNION Deposit UNION Transfer where Account_AccountNumber =?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -62,6 +63,7 @@ public class TransactionDAO extends BaseDAO {
 		try{
 		con = ConexionBD.obtenerConexion();
 		stmt = con.prepareStatement(queryAccount);
+		stmt.setString(1, account.getAccountNumber());
 		rs = stmt.executeQuery();
 
 		while (rs.next())
