@@ -123,17 +123,6 @@
 						</table>
 
 
-					<div align="left">
-
-						<textarea rows="10" cols="85">
-
-
-						
-										
-										
-						</textarea>
-
-					</div>
 
 
 
