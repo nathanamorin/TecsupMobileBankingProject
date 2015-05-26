@@ -1,4 +1,6 @@
 package edu.purdue.tech.tecsupmobilebankingproject;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,7 +18,38 @@ import java.math.BigDecimal;
 
 public class Transfer extends ActionBarActivity
 {
-    public void transferClickEvent(View v) { //This is the "Transfer" button's click event
+    //Dialog box stuff
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener()
+    {@Override
+        public void onClick(DialogInterface dialog, int which)
+        {
+            switch (which)
+            {
+                case DialogInterface.BUTTON_POSITIVE: //Yes button clicked
+                    final Spinner combo = (Spinner) findViewById(R.id.spinnerFrom); //Make the spinner position available again
+                    Integer fromSpinner = combo.getSelectedItemPosition();
+
+
+                    //Apply the transfer to the database via SQL
+                    if (fromSpinner == 0)
+                        Toast.makeText(getApplicationContext(), ("(insert Checking SQL stuff here)"), Toast.LENGTH_SHORT).show();
+                    else if (fromSpinner == 1)
+                        Toast.makeText(getApplicationContext(), ("(insert Savings SQL stuff here)"), Toast.LENGTH_SHORT).show();
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE: //No button clicked
+                    Toast.makeText(getApplicationContext(), ("You clicked the No button!"), Toast.LENGTH_SHORT).show();
+
+                    EditText amountTextBox = (EditText) findViewById(R.id.txtAmount); //Make the textbox available again
+                    amountTextBox.setText(""); //Clear the textbox
+
+                    break;
+            }
+        }
+    };
+
+    public void transferClickEvent(View v)
+    { //This is the "Transfer" button's click event
         //Get the position of the From Spinner and save it for later
         final Spinner combo = (Spinner) findViewById(R.id.spinnerFrom);
         Integer fromSpinner = combo.getSelectedItemPosition();
@@ -40,19 +73,19 @@ public class Transfer extends ActionBarActivity
             //Subtract the two and see if the result is negative. If it is, make more toast and stop execution of code
             if (currentBalance.subtract(moneyRequest).signum() < 0)
             {
-                amountTextBox.setText("");
+                amountTextBox.setText(""); //Clear the textbox
                 Toast.makeText(getApplicationContext(), (getResources().getString(R.string.savingsInsufficientFundsError)), Toast.LENGTH_SHORT).show();
             }
             else
             {
-                //Apply the transfer to the database via SQL?
-                if (fromSpinner == 0)
-                    Toast.makeText(getApplicationContext(), ("(insert checking SQL stuff here)"), Toast.LENGTH_SHORT).show();
-                else if (fromSpinner == 1)
-                    Toast.makeText(getApplicationContext(), ("(insert savings SQL stuff here)"), Toast.LENGTH_SHORT).show();
+                //Are you sure you want to do this?
+                AlertDialog.Builder builder = new AlertDialog.Builder(Transfer.this);
+                builder.setMessage(((getResources().getString(R.string.transfer_confirmationText)) + " " + amountText + " soles?")).setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
 
+                //The rest of the logic takes place in the dialog box code above.
             }
         }
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState)

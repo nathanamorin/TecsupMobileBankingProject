@@ -5,7 +5,7 @@
 
     tools:context="edu.purdue.tech.tecsupmobilebankingproject.TransactionList"
     android:orientation="vertical"
-    android:id="@+id/">
+    android:id="@+id/transactionList">
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,15 +22,8 @@
         android:text="Account"
         android:id="@+id/textView8" />
 
-    <Spinner
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:spinnerMode="dropdown" />
 
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePicker" />
+
+    />
 
 </LinearLayout>
