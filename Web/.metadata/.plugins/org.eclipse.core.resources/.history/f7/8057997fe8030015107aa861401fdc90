@@ -1,0 +1,26 @@
+package BankLogic;
+
+
+import java.util.List;
+import BankServices.modelo.*;
+import BankServices.dao.*;
+
+public class TransactionLogic {
+
+	public void addTransaction(Account account, Transaction transaction)
+	{
+		TransactionDAO dao = new TransactionDAO();
+		dao.addTransaction(account, transaction);
+		
+	}
+
+	public List<Transaction> getTransactions()
+	{
+		TransactionDAO dao = new TransactionDAO();
+		List<Transaction> transactions = dao.getTransactions();
+		return transactions;
+		
+	}
+	
+
+}

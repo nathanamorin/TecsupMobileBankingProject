@@ -100,7 +100,7 @@ public class Deposit extends ActionBarActivity {
 
                                     execute_deposit(Float.parseFloat(eText.getText().toString()),Saving_Account);
                                 }
-
+                                eText.setText("");
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:

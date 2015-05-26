@@ -14,6 +14,7 @@ public class Customer {
 	private String status;
 	private String passwordChangeDate;
 	private Collection<SecurityQuestion> securityQuestions = new ArrayList<SecurityQuestion>();
+	public Boolean loggedIn = false;
 
 
 	public Customer() {

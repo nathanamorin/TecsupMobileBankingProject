@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="BankServices.dao.CustomerDAO"/>
-<fullyQualifiedTypeName name="BankServices.modelo.Customer"/>
 <fullyQualifiedTypeName name="javax.ws.rs.DefaultValue"/>
 <fullyQualifiedTypeName name="BankServices.dao.SecurityQuestionDAO"/>
 <fullyQualifiedTypeName name="com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="BankServices.modelo.SecurityQuestion"/>
 <fullyQualifiedTypeName name="com.sun.org.apache.xerces.internal.impl.dv.xs.DateTimeDV"/>
-<fullyQualifiedTypeName name="BankServices.modelo.Account"/>
 <fullyQualifiedTypeName name="BankServices.modelo.Transaction"/>
+<fullyQualifiedTypeName name="com.mysql.jdbc.Connection"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="BankServices.modelo.Account"/>
+<fullyQualifiedTypeName name="BankLogic.LoginLogic"/>
+<fullyQualifiedTypeName name="BankServices.modelo.Customer"/>
+<fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
 </qualifiedTypeNameHistroy>

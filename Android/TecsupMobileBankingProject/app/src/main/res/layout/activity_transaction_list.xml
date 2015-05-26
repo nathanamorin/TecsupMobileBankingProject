@@ -5,7 +5,11 @@
 
     tools:context="edu.purdue.tech.tecsupmobilebankingproject.TransactionList"
     android:orientation="vertical"
+<<<<<<< HEAD
     android:id="@+id/transactionList">
+=======
+    android:id="@+id/linear1">
+>>>>>>> origin/master
 
     <TextView
         android:layout_width="wrap_content"
