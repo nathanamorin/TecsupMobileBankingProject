@@ -82,10 +82,6 @@ public class Login extends HttpServlet {
 		
 		
 		//Continue
-		request.setAttribute("userID",customer.getIdUser());
-		request.setAttribute("user",customer);
-		RequestDispatcher rd = request.getRequestDispatcher(".jsp");
-		rd.forward(request, response);
 	}
 
 }
