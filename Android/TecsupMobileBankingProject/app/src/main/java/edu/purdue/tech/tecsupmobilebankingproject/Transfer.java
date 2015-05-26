@@ -16,39 +16,61 @@ import java.math.BigDecimal;
 
 public class Transfer extends ActionBarActivity
 {
-    public void transferClickEvent()
-    {
+    public void transferClickEvent(View v) { //This is the "Transfer" button's click event
+        //Get the position of the From Spinner and save it for later
+        final Spinner combo = (Spinner) findViewById(R.id.spinnerFrom);
+        Integer fromSpinner = combo.getSelectedItemPosition();
+
         //Get text from the Amount TextView and save it into moneyRequest
-        TextView amountTextBox = (EditText)findViewById(R.id.txtAmount);
-        if (amountTextBox.getText().toString()=="")
-        {
-            //Make toast for "Please enter an amount."
-        }
+        EditText amountTextBox = (EditText) findViewById(R.id.txtAmount);
+        String amountText = amountTextBox.getText().toString().trim();
+        //Existence validation, make error-flavored toast.
+        if (amountText.equals(""))
+            Toast.makeText(getApplicationContext(), (getResources().getString(R.string.savingsBlankTextError)), Toast.LENGTH_SHORT).show();
+
         else
         {
-            BigDecimal moneyRequest = new BigDecimal(amountTextBox.getText().toString());
+            BigDecimal moneyRequest = new BigDecimal(amountText);
+            BigDecimal currentBalance = new BigDecimal(0);
+            if (fromSpinner == 0)
+                currentBalance = new BigDecimal(100); //Make this line pull data from the Checking Account eventually.
+            else if (fromSpinner == 1)
+                currentBalance = new BigDecimal(100); //Make this line pull data from the Savings Account eventually.
 
-            //Subtract this with the amount of money actually in the database
-            //If the result of this is negative, set "@+id/txtAmount" to "", show "There's not that much money in your account." in a Toast pop-up, and stop execution of code
-            //Apply the transfer to the database via SQL?
+            //Subtract the two and see if the result is negative. If it is, make more toast and stop execution of code
+            if (currentBalance.subtract(moneyRequest).signum() < 0)
+            {
+                amountTextBox.setText("");
+                Toast.makeText(getApplicationContext(), (getResources().getString(R.string.savingsInsufficientFundsError)), Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                //Apply the transfer to the database via SQL?
+                if (fromSpinner == 0)
+                    Toast.makeText(getApplicationContext(), ("(insert checking SQL stuff here)"), Toast.LENGTH_SHORT).show();
+                else if (fromSpinner == 1)
+                    Toast.makeText(getApplicationContext(), ("(insert savings SQL stuff here)"), Toast.LENGTH_SHORT).show();
+
+            }
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        final String[] spinnerItems = new String[]
+                {
+                        getResources().getString(R.string.checkingToSavingsItem),
+                        getResources().getString(R.string.savingsToCheckingItem)
+                };
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transfer);
-
-        final String[] spinnerItems = new String[]{"Checking", "Savings"};
 
         //Populate the two spinners
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerItems);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final Spinner combo = (Spinner)findViewById(R.id.spinnerFrom);
         combo.setAdapter(adapter);
-        final Spinner combo2 = (Spinner)findViewById(R.id.spinnerTo);
-        combo2.setAdapter(adapter);
 
         combo.setOnItemSelectedListener(
                 new OnItemSelectedListener() {
@@ -56,16 +78,20 @@ public class Transfer extends ActionBarActivity
                     public void onItemSelected(
                             AdapterView<?> parent, View view, int position, long id) {
 
-                    //Automagically set the spinner's position.
+                        //Get ready to put stuff in the Balance label
+                        TextView txt = (TextView) findViewById(R.id.CurrentBalanceLabel);
+
                         if (position==0)
                         {
-                            combo2.setSelection(1);
-                            //Get the current amount of money in Checking from the database and display it in "@+id/CurrentBalanceLabel"
+                            //Get the current amount of money in Checking from the database
+                            //
+                            txt.setText("(Checking account SQL)"); //display it
                         }
                         if (position==1)
                         {
-                            combo2.setSelection(0);
-                            //Get the current amount of money in Savings from the database and display it in "@+id/CurrentBalanceLabel"
+                            //Get the current amount of money in Savings from the database
+                            //
+                            txt.setText("(Savings account SQL)"); //display it
                         }
                     }
                     @Override

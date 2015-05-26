@@ -10,5 +10,15 @@
     <string name="title_activity_deposit">Deposit</string>
 
 
+    <string name="transferFromLabel">From: </string>
+    <string name="transferCurrentBalanceLabel">Current Balance: </string>
+    <string name="transferAmountLabel">Amount: </string>
+    <string name="transferButtonText">Request Transfer</string>
+    <string name="checkingToSavingsItem">Checking to Savings</string>
+    <string name="savingsToCheckingItem">Savings to Checking</string>
+    <string name="savingsBlankTextError">Please enter an amount.</string>
+    <string name="savingsInsufficientFundsError">There\'s not enough money in the account.</string>
+    <string name="title_activity_transaction_list">TransactionList</string>
+
 
 </resources>
