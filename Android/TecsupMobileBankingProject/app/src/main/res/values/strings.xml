@@ -18,6 +18,7 @@
     <string name="savingsToCheckingItem">Savings to Checking</string>
     <string name="savingsBlankTextError">Please enter an amount.</string>
     <string name="savingsInsufficientFundsError">There\'s not enough money in the account.</string>
+    <string name="title_activity_transaction_list">TransactionList</string>
 
 
 </resources>

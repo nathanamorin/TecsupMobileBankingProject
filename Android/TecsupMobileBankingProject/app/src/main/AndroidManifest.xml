@@ -10,7 +10,6 @@
         <activity
             android:name=".Login"
             android:label="@string/app_name" >
-
         </activity>
         <activity
             android:name=".Transfer"
@@ -24,18 +23,18 @@
         <activity
             android:name=".Withdrawal"
             android:label="@string/title_activity_withdrawal" >
-
-
         </activity>
         <activity
             android:name=".Login2"
             android:label="@string/title_activity_login2" >
-
-
         </activity>
         <activity
             android:name=".Deposit"
             android:label="@string/title_activity_deposit" >
+        </activity>
+        <activity
+            android:name=".TransactionList"
+            android:label="@string/title_activity_transaction_list" >
         </activity>
     </application>
 
