@@ -24,12 +24,15 @@
 
 <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 
-<%
-ReportDAO dao = new ReportDAO();
-Customer customer = (Customer)session.getAttribute("user");
-AccountDAO Adao = new AccountDAO();
-Account account = Adao.getAccountByCustomer(customer, "Checking");
-%>
+					<%
+					ReportDAO dao = new ReportDAO();
+					Customer customer = (Customer)session.getAttribute("user");
+					AccountDAO Adao = new AccountDAO();
+					Account account = Adao.getAccountByCustomer(customer, "Checking");
+					AccountDAO Bdao = new AccountDAO();
+					Account accountB = Bdao.getAccountByCustomer(customer, "Savings");
+					%>
+					
 
 
 
@@ -82,15 +85,7 @@ Account account = Adao.getAccountByCustomer(customer, "Checking");
 
 
 
-									<article class="box excerpt">
-										<header>
-
-											<h4>
-												<a href="#">Savings</a>
-											</h4>
-										</header>
-
-									</article>
+									
 
 								</li>
 
@@ -144,8 +139,7 @@ Account account = Adao.getAccountByCustomer(customer, "Checking");
 						</html>
 					
 					</section>
-			
-					
+				
 
 					<div align="right">
 						Current Balance: <span class="currencyinput">$<input
@@ -164,6 +158,9 @@ Account account = Adao.getAccountByCustomer(customer, "Checking");
 								<th>Status</th>
 							</tr>
 							<%
+							
+							
+							
 
 							List<Report> list = dao.getTransactions(account.getAccountNumber().toString());
  
@@ -182,8 +179,42 @@ Account account = Adao.getAccountByCustomer(customer, "Checking");
 						</table>
 
 
+									<article class="box excerpt">
+										<header>
 
+											<h4>
+												<a href="#">Savings</a>
+											</h4>
+										</header>
 
+									</article>
+									
+									
+									<table class="table table-hover">
+							<tr>
+								<th>Date</th>
+								<th>Description</th>
+								<th>Amount</th>
+								<th>Status</th>
+							</tr>
+											<%
+											
+
+							List<Report> listA = dao.getTransactions(accountB.getAccountNumber().toString());
+ 
+							if (list != null) {
+								for (Iterator i = listA.iterator(); i.hasNext();) {
+									Report reA = (Report) i.next();
+									
+									out.println("<tr><td>" + reA.getDate() + "</td>");
+									out.println("<td>" + reA.getDescription() + "</td>");										
+									out.println("<td>" + reA.getAmount() + "</td>");										
+									out.println("<td>" + reA.getStatus() + "</td></tr>");
+
+								}
+							}
+							%>
+					</table>
 
 				</div>
 			</div>
