@@ -159,7 +159,7 @@
 							ReportDAO dao = new ReportDAO();
 							
 
-							List<Report> list = dao.getTransactions("0013256498");
+							List<Report> list = dao.getTransactions(account);
  
 							if (list != null) {
 								for (Iterator i = list.iterator(); i.hasNext();) {
