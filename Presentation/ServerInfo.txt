@@ -1,0 +1,4 @@
+Project Base: http://192.168.19.31:8080/TecsupMobileProject
+
+http://192.168.19.31:8080/TecsupMobileProject/login.jsp
+
