@@ -140,28 +140,28 @@
 					
 					</section>
 				
-
+<section>
 					<div align="right">
-						Current Balance: <span class="currencyinput">$<input
+						Current Checking Balance: <span class="currencyinput">$<input
 							type="text" name="currency" disabled value=<% out.println(account.getCurrentBal());%>></span>
-
+</section>
 
 					</div>
 					
 					<br> <br>
 					
 					<table class="table table-hover">
+					<div align ="left">
 							<tr>
 								<th>Date</th>
 								<th>Description</th>
 								<th>Amount</th>
 								<th>Status</th>
 							</tr>
+							
 							<%
-							
-							
-							
-
+					
+	
 							List<Report> list = dao.getTransactions(account.getAccountNumber().toString());
  
 							if (list != null) {
@@ -179,6 +179,9 @@
 						</table>
 
 
+									<br>
+									<br>
+									<br>
 									<article class="box excerpt">
 										<header>
 
@@ -186,12 +189,23 @@
 												<a href="#">Savings</a>
 											</h4>
 										</header>
-
 									</article>
+
+									<div>
+									<section>
 									
-									
+									<div align="center">
+						Current Savings Balance: <span class="currencyinput">$<input
+							type="text" name="currency" disabled value=<% out.println(accountB.getCurrentBal());%>></span>
+</section>
+
+					</div>
+					<br>
+					<tr align ="left">
 									<table class="table table-hover">
+									
 							<tr>
+							
 								<th>Date</th>
 								<th>Description</th>
 								<th>Amount</th>
@@ -215,7 +229,7 @@
 							}
 							%>
 					</table>
-
+</div>
 				</div>
 			</div>
 
