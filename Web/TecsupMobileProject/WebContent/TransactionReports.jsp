@@ -1,5 +1,8 @@
+<%@page import="java.util.*,BankServices.modelo.CheckingAccount"%>
+<%@page import="java.util.*,BankServices.dao.ReportDAO"%>
 <%@page import="java.util.*,BankServices.modelo.Transaction"%>
 <%@page import="java.util.*,BankLogic.TransactionLogic"%>
+<%@page import="java.util.*,BankServices.modelo.Report"%>
 <!DOCTYPE HTML>
 <!--
 	Strongly Typed by HTML5 UP
@@ -147,13 +150,28 @@
 					
 					<table class="table table-hover">
 							<tr>
-								<th>AccountNum</th>
-								<th>CurrentBal</th>
+								<th>Date</th>
+								<th>Description</th>
+								<th>Amount</th>
 								<th>Status</th>
-								<th>Available</th>
 							</tr>
 							<%
+							ReportDAO dao = new ReportDAO();
+							
 
+							List<Report> list = dao.getTransactions("0013256498");
+ 
+							if (list != null) {
+								for (Iterator i = list.iterator(); i.hasNext();) {
+									Report re = (Report) i.next();
+									
+									out.println("<tr><td>" + re.getDate() + "</td>");
+									out.println("<td>" + re.getDescription() + "</td>");										
+									out.println("<td>" + re.getAmount() + "</td>");										
+									out.println("<td>" + re.getStatus() + "</td></tr>");
+
+								}
+							}
 							%>
 						</table>
 
