@@ -10,13 +10,14 @@
 -->
 <html>
 	<head>
-		<title>Strongly Typed by HTML5 UP</title>
+		<title>Banco Credito del Peru</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/css/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie/v8.css" /><![endif]-->
 		<!--[if lte IE 8]><script src="assets/css/ie/respond.min.js"></script><![endif]-->
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 	</head>
 	<body class="homepage">
 		<div id="page-wrapper">
