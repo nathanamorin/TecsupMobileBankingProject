@@ -2,6 +2,7 @@ INDEX VERSION 1.3+C:\Users\Alumno\TecsupMobileBankingProject\Web\.metadata\.plug
 2261167410.index
 1857612461.index
 1177644195.index
+1177644195.index
 3425070347.index
 1844577418.index
 248063529.index
