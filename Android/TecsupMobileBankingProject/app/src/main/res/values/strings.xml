@@ -4,23 +4,23 @@
     <string name="app_name">TecsupMobileBankingProject</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_transfer">Transfer</string>
     <string name="title_activity_login2">Login</string>
     <string name="title_activity_withdrawal">Login</string>
     <string name="title_activity_deposit">Deposit</string>
-
-
-    <string name="transferFromLabel">From: </string>
-    <string name="transferCurrentBalanceLabel">Current Balance: </string>
-    <string name="transferAmountLabel">Amount: </string>
-    <string name="transferButtonText">Request Transfer</string>
-    <string name="checkingToSavingsItem">Checking to Savings</string>
-    <string name="savingsToCheckingItem">Savings to Checking</string>
-    <string name="savingsBlankTextError">Please enter an amount.</string>
-    <string name="savingsInsufficientFundsError">There\'s not enough money in the account.</string>
-    <string name="transfer_confirmationText">Are you sure you want to transfer</string>
-
     <string name="title_activity_transaction_list">TransactionList</string>
+
+    <string name="title_activity_transfer">Transferencia</string>
+    <string name="transferFromLabel">Desde:</string>
+    <string name="transferCurrentBalanceLabel">Saldo actual:</string>
+    <string name="transferAmountLabel">Monto:</string>
+    <string name="transferButtonText">Transferir</string>
+    <string name="checkingToSavingsItem">Cuenta de ahorro → corriente</string>
+    <string name="savingsToCheckingItem">Cuenta corriente → ahorro</string>
+    <string name="savingsBlankTextError">Por favor ingrese un monto.</string>
+    <string name="savingsInsufficientFundsError">Saldo insuficiente.</string>
+    <string name="transfer_confirmationText">Esta seguro de que desea transferir</string>
+
+
 
 
 

@@ -80,7 +80,14 @@ public class Transfer extends ActionBarActivity
             {
                 //Are you sure you want to do this?
                 AlertDialog.Builder builder = new AlertDialog.Builder(Transfer.this);
-                builder.setMessage(((getResources().getString(R.string.transfer_confirmationText)) + " " + amountText + " soles?")).setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
+                if(amountText.equals("1"))
+                {
+                    builder.setMessage(((getResources().getString(R.string.transfer_confirmationText)) + " " + amountText + " sole?")).setPositiveButton("Sí", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
+                }
+                else
+                {
+                    builder.setMessage(((getResources().getString(R.string.transfer_confirmationText)) + " " + amountText + " soles?")).setPositiveButton("Sí", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
+                }
 
                 //The rest of the logic takes place in the dialog box code above.
             }
