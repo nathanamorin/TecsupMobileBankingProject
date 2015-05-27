@@ -149,7 +149,7 @@ Account account = Adao.getAccountByCustomer(customer, "Checking");
 
 					<div align="right">
 						Current Balance: <span class="currencyinput">$<input
-							type="text" name="currency" disabled value=<% out.println(account.getCurrentBal());%>></span>
+							type="text" name="currency" disabled value=<% out.println(account.getCurrentBal());%>>></span>
 
 
 					</div>

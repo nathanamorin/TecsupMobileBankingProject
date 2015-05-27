@@ -1,11 +1,8 @@
 <%@page import="java.util.*,BankServices.modelo.CheckingAccount"%>
 <%@page import="java.util.*,BankServices.dao.ReportDAO"%>
-<%@page import="java.util.*,BankServices.dao.AccountDAO"%>
 <%@page import="java.util.*,BankServices.modelo.Transaction"%>
 <%@page import="java.util.*,BankLogic.TransactionLogic"%>
 <%@page import="java.util.*,BankServices.modelo.Report"%>
-<%@page import="java.util.*,BankServices.modelo.Customer"%>
-<%@page import="java.util.*,BankServices.modelo.Account"%>
 <!DOCTYPE HTML>
 <!--
 	Strongly Typed by HTML5 UP
@@ -24,12 +21,7 @@
 
 <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 
-<%
-ReportDAO dao = new ReportDAO();
-Customer customer = (Customer)session.getAttribute("user");
-AccountDAO Adao = new AccountDAO();
-Account account = Adao.getAccountByCustomer(customer, "Checking");
-%>
+
 
 
 
@@ -68,7 +60,7 @@ Account account = Adao.getAccountByCustomer(customer, "Checking");
 							<ul class="divided">
 								<li>
 									<h2>
-										<a href="#">User: <%out.println(customer.getName()); %></a>
+										<a href="#">Account Type: </a>
 									</h2> <!-- Excerpt -->
 									<article class="box excerpt">
 										<header>
@@ -149,7 +141,7 @@ Account account = Adao.getAccountByCustomer(customer, "Checking");
 
 					<div align="right">
 						Current Balance: <span class="currencyinput">$<input
-							type="text" name="currency" disabled value=<% out.println(account.getCurrentBal());%>></span>
+							type="text" name="currency" disabled></span>
 
 
 					</div>
@@ -164,8 +156,10 @@ Account account = Adao.getAccountByCustomer(customer, "Checking");
 								<th>Status</th>
 							</tr>
 							<%
+							ReportDAO dao = new ReportDAO();
+							
 
-							List<Report> list = dao.getTransactions(account.getAccountNumber().toString());
+							List<Report> list = dao.getTransactions(account);
  
 							if (list != null) {
 								for (Iterator i = list.iterator(); i.hasNext();) {

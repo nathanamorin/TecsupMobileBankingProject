@@ -1,5 +1,11 @@
+<%@page import="java.util.*,BankServices.modelo.CheckingAccount"%>
+<%@page import="java.util.*,BankServices.dao.ReportDAO"%>
+<%@page import="java.util.*,BankServices.dao.AccountDAO"%>
 <%@page import="java.util.*,BankServices.modelo.Transaction"%>
 <%@page import="java.util.*,BankLogic.TransactionLogic"%>
+<%@page import="java.util.*,BankServices.modelo.Report"%>
+<%@page import="java.util.*,BankServices.modelo.Customer"%>
+<%@page import="java.util.*,BankServices.modelo.Account"%>
 <!DOCTYPE HTML>
 <!--
 	Strongly Typed by HTML5 UP
@@ -18,7 +24,12 @@
 
 <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 
-
+<%
+ReportDAO dao = new ReportDAO();
+Customer customer = (Customer)session.getAttribute("user");
+AccountDAO Adao = new AccountDAO();
+Account account = Adao.getAccountByCustomer(customer, "Checking");
+%>
 
 
 
@@ -57,7 +68,7 @@
 							<ul class="divided">
 								<li>
 									<h2>
-										<a href="#">Account Type: </a>
+										<a href="#">User: <%out.println(customer.getName()); %></a>
 									</h2> <!-- Excerpt -->
 									<article class="box excerpt">
 										<header>
@@ -138,7 +149,7 @@
 
 					<div align="right">
 						Current Balance: <span class="currencyinput">$<input
-							type="text" name="currency" disabled></span>
+							type="text" name="currency" disabled value=<% out.println(account.getCurrentBal());%>></span>
 
 
 					</div>
@@ -147,13 +158,26 @@
 					
 					<table class="table table-hover">
 							<tr>
-								<th>AccountNum</th>
-								<th>CurrentBal</th>
+								<th>Date</th>
+								<th>Description</th>
+								<th>Amount</th>
 								<th>Status</th>
-								<th>Available</th>
 							</tr>
 							<%
 
+							List<Report> list = dao.getTransactions(account.getAccountNumber().toString());
+ 
+							if (list != null) {
+								for (Iterator i = list.iterator(); i.hasNext();) {
+									Report re = (Report) i.next();
+									
+									out.println("<tr><td>" + re.getDate() + "</td>");
+									out.println("<td>" + re.getDescription() + "</td>");										
+									out.println("<td>" + re.getAmount() + "</td>");										
+									out.println("<td>" + re.getStatus() + "</td></tr>");
+
+								}
+							}
 							%>
 						</table>
 

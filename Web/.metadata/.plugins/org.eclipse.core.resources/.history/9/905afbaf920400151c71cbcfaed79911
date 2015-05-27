@@ -68,7 +68,7 @@ Account account = Adao.getAccountByCustomer(customer, "Checking");
 							<ul class="divided">
 								<li>
 									<h2>
-										<a href="#">User: <%out.println(customer.getName()); %></a>
+										<a href="#">Account Type: </a>
 									</h2> <!-- Excerpt -->
 									<article class="box excerpt">
 										<header>
@@ -149,7 +149,7 @@ Account account = Adao.getAccountByCustomer(customer, "Checking");
 
 					<div align="right">
 						Current Balance: <span class="currencyinput">$<input
-							type="text" name="currency" disabled value=<% out.println(account.getCurrentBal());%>></span>
+							type="text" name="currency" disabled value=<% out.println(account.getCurrentBal());%>>></span>
 
 
 					</div>
