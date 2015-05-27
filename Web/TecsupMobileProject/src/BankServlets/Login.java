@@ -41,10 +41,13 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("login request");
-		String username = (String) request.getAttribute("username");
-		String password = (String) request.getAttribute("password");
-		Integer securityQuestionID = (Integer) request.getAttribute("securityQuestionID");
-		String securityAnswer = (String) request.getAttribute("securityAnswer");
+		String username = (String) request.getParameter("username");
+		String name = request.getParameterNames().nextElement();
+		
+		System.out.println("Username - " + username);
+		String password = (String) request.getParameter("password");
+		Integer securityQuestionID = Integer.getInteger(request.getParameter("securityQuestionID"));
+		String securityAnswer = (String) request.getParameter("securityAnswer");
 		
 		request.setAttribute("securityQuestion",null);
 		Customer customer = null;
@@ -66,26 +69,30 @@ public class Login extends HttpServlet {
 			request.setAttribute("RESUL", "Incorrect Username or Password");
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
-			return;
+			
 			
 		}
 		//Provide security question if customer not null
-		if (customer.loggedIn == false)
+		else if (customer.loggedIn == false)
 		{
 			request.setAttribute("RESUL", "Please Provide Security Question");
-			request.setAttribute("securityQuestion",customer.getRandomSecurityQuestion());
+			request.setAttribute("user",customer);
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
-			return;
+			
 			
 		}
 		
-		
+		else
+		{
+			
+		request.setAttribute("RESUL", "Logged In!");
 		//Continue
 		request.setAttribute("userID",customer.getIdUser());
 		request.setAttribute("user",customer);
 		RequestDispatcher rd = request.getRequestDispatcher(".jsp");
 		rd.forward(request, response);
+		}
 	}
 
 }

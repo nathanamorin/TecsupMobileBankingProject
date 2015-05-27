@@ -20,7 +20,7 @@
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
-		paddingtop: 0;
+		padding-top: 0;
 	}
 	
 	div.header{
@@ -1409,7 +1409,7 @@
 		}
 
 			table.default tbody tr {
-				border-top: solid 1px #E5E5E5;
+				border-top: solid 1px #ffffff;
 			}
 
 				table.default tbody tr:first-child {
@@ -1436,7 +1436,7 @@
 			}
 
 			table.default tfoot {
-				background: #F0F0F0;
+				background: #ffffff;
 				border-top: solid 2px #E5E5E5;
 			}
 
@@ -1553,6 +1553,7 @@
 
 	#header-wrapper {
 		position: relative;
+		top: -150px;
 		background: #fff;
 		text-align: center;
 	}
@@ -1598,15 +1599,17 @@
 
 	#main-wrapper {
 		position: relative;
+		top: -150px;
 		overflow: hidden;
 		background: #fff;
 	}
 
 	#footer-wrapper {
 		position: relative;
+		top: -150px;
 		overflow: hidden;
-		border-top: solid 2px #e5e5e5;
-		background: #f0f0f0;
+		border-top: solid 2px #ffffff;
+		background: #ffffff;
 	}
 
 		#footer-wrapper form input[type="text"],
@@ -1614,7 +1617,7 @@
 		#footer-wrapper form input[type="password"],
 		#footer-wrapper form select,
 		#footer-wrapper form textarea {
-			background: #f7f7f7;
+			background: #ffffff;
 		}
 
 			#footer-wrapper form input[type="text"]:focus,
