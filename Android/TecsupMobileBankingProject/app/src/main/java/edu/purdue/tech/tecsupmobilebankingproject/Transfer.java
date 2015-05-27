@@ -38,8 +38,6 @@ public class Transfer extends ActionBarActivity
                     break;
 
                 case DialogInterface.BUTTON_NEGATIVE: //No button clicked
-                    Toast.makeText(getApplicationContext(), ("You clicked the No button!"), Toast.LENGTH_SHORT).show();
-
                     EditText amountTextBox = (EditText) findViewById(R.id.txtAmount); //Make the textbox available again
                     amountTextBox.setText(""); //Clear the textbox
 
