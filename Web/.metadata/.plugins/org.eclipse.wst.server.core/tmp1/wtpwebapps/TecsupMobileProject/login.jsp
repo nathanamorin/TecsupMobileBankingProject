@@ -10,13 +10,14 @@
 -->
 <html>
 	<head>
-		<title>Strongly Typed by HTML5 UP</title>
+		<title>Banco Credito del Peru</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/css/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie/v8.css" /><![endif]-->
 		<!--[if lte IE 8]><script src="assets/css/ie/respond.min.js"></script><![endif]-->
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 	</head>
 	<body class="homepage">
 		<div id="page-wrapper">
@@ -62,6 +63,8 @@
 											else if (customer.loggedIn == false)
 												{
 													SecurityQuestion question = customer.getRandomSecurityQuestion();
+													out.println( " <input type=hidden id=username name=username value=" + customer.getIdUser());
+													out.println( " <input type=hidden id=password name=password value=" + customer.getPassword());
 													out.println( "<h3>SecurityQuestion</h3> <input type=hidden id=securityQuestionID name=securityQuestionID value=");
 													out.println(question.getIdQuestion());
 													out.println("><h3>");

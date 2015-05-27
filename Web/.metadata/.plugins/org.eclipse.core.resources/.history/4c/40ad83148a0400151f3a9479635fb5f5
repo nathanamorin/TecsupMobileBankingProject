@@ -78,14 +78,11 @@ public class LoginLogic {
 		SecurityQuestion ResponseSQ = customer.getSecurityQuestion(securityQuestionID);
 		if (ResponseSQ == null)
 		{
-			System.out.println("Customer id of secure " + securityQuestionID.toString());
 			return customer;
 		}
 		
 		if (!securityAnswer.equals(ResponseSQ.getAnswer()) )
 		{
-			System.out.println("Customer answer " + securityAnswer);
-			System.out.println("Correct answer" + ResponseSQ.getAnswer());
 			return customer;
 		}
 		customer.loggedIn = true;
