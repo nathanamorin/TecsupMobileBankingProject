@@ -5,7 +5,6 @@
 
     tools:context="edu.purdue.tech.tecsupmobilebankingproject.TransactionList"
     android:orientation="vertical"
-<<<<<<< HEAD
     android:id="@+id/transactionList">
 =======
     android:id="@+id/linear1">
