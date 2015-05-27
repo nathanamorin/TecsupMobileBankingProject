@@ -21,31 +21,31 @@ import BankServices.util.*;
 
 public class CheckingDAO extends BaseDAO {
 
-	public Collection<CheckingAccount> listar() throws DAOExcepcion {
-		Collection<CheckingAccount> c = new ArrayList<CheckingAccount>();
+	public Account getCheckingById(String uID) throws DAOExcepcion {
+		Account account = null;
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			con = ConexionBD.obtenerConexion();
-			String query = "select AccountNumber,CurrentBal,DateOpened,Status,InterestRate,AvailableBal,MinBal,Customer_userID from account";
+			String query = "select AccountNumber,CurrentBal,DateOpened,Status,InterestRate,AvailableBal,MinBal,Customer_userID from account where Customer_userID = ? and AccountType = Checking";
 			stmt = con.prepareStatement(query);
+			stmt.setString(1, uID);
 			rs = stmt.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) {
 
-				CheckingAccount ch = new CheckingAccount();
 				
 				
-				ch.setAccountNumber(rs.getString("AccountNumber"));
-				ch.setCurrenBal(rs.getInt("CurrentBal"));
-				ch.setDateOpened(rs.getString("DateOpened"));
-				ch.setStatus(rs.getString("Status"));
-				ch.setInteresRate(rs.getInt("InterestRate"));
-				ch.setAvailableBal(rs.getInt("AvailableBal"));
-				ch.setMinBal(rs.getInt("MinBal"));
-				ch.setCustomer_idUser(rs.getString("Customer_userId"));
 				
-				c.add(ch);
+				account.setAccountNumber(rs.getString("AccountNumber"));
+				account.setCurrentBal(rs.getInt("CurrentBal"));
+				
+				account.setStatus(rs.getString("Status"));
+				account.setInterestRate(rs.getInt("InterestRate"));
+				account.setAvailableBal(rs.getInt("AvailableBal"));
+				account.setMinBal(rs.getInt("MinBal"));
+				
+				
 			}
 
 		} catch (SQLException e) {
@@ -56,7 +56,7 @@ public class CheckingDAO extends BaseDAO {
 			this.cerrarStatement(stmt);
 			this.cerrarConexion(con);
 		}
-		return c;
+		return account;
 	}
 
 }

@@ -90,6 +90,7 @@ public class LoginQuestions extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    int count = 0;
 
     private class ClienteREST extends AsyncTask<Void, Void, Void> {
 
@@ -139,6 +140,7 @@ public class LoginQuestions extends ActionBarActivity {
                 String x = entries.getString("return");
 
 
+                
 
                 if (x.equals("success")){
                     Intent i = new Intent(LoginQuestions.this, SummaryPage.class);
@@ -151,6 +153,7 @@ public class LoginQuestions extends ActionBarActivity {
                     runOnUiThread(new Runnable() {
                         public void run() {
                             Toast.makeText(LoginQuestions.this, "Wrong answer", Toast.LENGTH_LONG).show();
+
                             txtAns.setText("");
                         }
                     });

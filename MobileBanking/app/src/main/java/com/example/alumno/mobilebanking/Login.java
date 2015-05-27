@@ -71,6 +71,7 @@ public class Login extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    int count = 0;
 
     private class ClienteREST extends AsyncTask<Void, Void, Void> {
 
@@ -80,7 +81,7 @@ public class Login extends ActionBarActivity {
             Log.i("ProductosBuscarREST", "Dentro de doInBackground()");
 
 
-            TextView txtUn = (TextView) findViewById(R.id.txtUn);
+            final TextView txtUn = (TextView) findViewById(R.id.txtUn);
             final TextView txtPw = (TextView) findViewById(R.id.txtPw);
 
             try {
@@ -122,7 +123,14 @@ public class Login extends ActionBarActivity {
                     runOnUiThread(new Runnable() {
                         public void run() {
                             Toast.makeText(Login.this, "Wrong password", Toast.LENGTH_LONG).show();
+                            count = count +1;
+                            Toast.makeText(Login.this, "Failed attempt:"+count, Toast.LENGTH_LONG).show();
                             txtPw.setText("");
+                            if (count > 3){
+                                count = 0;
+                                Toast.makeText(Login.this, "Account locked", Toast.LENGTH_LONG).show();
+                                txtUn.setText("");
+                            }
                         }
                     });
                 }
