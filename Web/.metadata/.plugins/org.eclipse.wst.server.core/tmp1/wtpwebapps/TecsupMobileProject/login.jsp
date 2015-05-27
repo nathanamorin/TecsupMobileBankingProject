@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.*,BankServices.modelo.SecurityQuestion"%>
-<%@page import="java.util.*,BankServices.modelo.Customer"%>
 <!DOCTYPE HTML>
 <!--
 	Strongly Typed by HTML5 UP
@@ -51,28 +50,21 @@
 												%>
 											</header>
 											<form action="Login" method="post" id="loginForm">
-											<%
-											Customer customer = (Customer)request.getAttribute("user");
-											if (customer == null)
+											<%SecurityQuestion question = (SecurityQuestion) request.getAttribute("RESUL");
+											if (question == null)
 											{
 												out.println( "<h3>Username</h3> <input type=text id=username name=username><h3>Password</h3><input type=password id=password name=password>");
 											}
 												
 											
-											else if (customer.loggedIn == false)
+											if (question != null)
 												{
-													SecurityQuestion question = customer.getRandomSecurityQuestion();
-													out.println( "<h3>SecurityQuestion</h3> <input type=hidden id=securityQuestionID name=securityQuestionID value=");
+													out.println( "<h3>SecurityQuestion</h3> <input type=text id=securityQuestionID name=securityQuestionID value=");
 													out.println(question.getIdQuestion());
 													out.println("><h3>");
 													out.println(question.getQuestion());
 													out.println("</h3><input type=text id=securityAnswer name=securityAnswer>");
 												}
-											else
-											{
-												out.println("Thanks for logging in, " + customer.getName());
-											}
-											
 													
 												%>
 

@@ -43,13 +43,11 @@ public class LoginLogic {
 		
 		if (username == "" || username == null)
 		{
-			System.out.println("Do Login Error Username");
 			return null;
 		}
 		
 		else if (password == "" || password == null)
 		{
-			System.out.println("Do Login Error Password");
 			return null;
 		}
 		
@@ -63,7 +61,6 @@ public class LoginLogic {
 		
 		if (!password.equals(customer.getPassword()))
 		{
-			System.out.println("Do Login Error Password Not Match");
 			return null;
 		}
 
@@ -71,7 +68,6 @@ public class LoginLogic {
 
 		if (securityAnswer == null || securityAnswer == "" || securityQuestionID == null)
 		{
-			System.out.println("Customer do login " + customer.getName());
 			return customer;
 		}
 		
