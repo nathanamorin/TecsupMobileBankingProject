@@ -47,7 +47,7 @@ public class Login extends HttpServlet {
 		Integer securityQuestionID = null;
 		if (securityQuestionIDStr != null) 
 		{
-			securityQuestionID = Integer.parseInt( securityQuestionIDStr);
+			Integer securityQuestionID = Integer.parseInt( securityQuestionIDStr);
 		}
 		String securityAnswer = (String) request.getParameter("securityAnswer");
 		
@@ -78,7 +78,7 @@ public class Login extends HttpServlet {
 		else if (customer.loggedIn == false)
 		{
 			request.setAttribute("RESUL", "Please Provide Security Question");
-			//System.out.println("Response - " + securityQuestionID.toString() + securityAnswer);
+			System.out.println("Response - " + securityQuestionID.toString() + securityAnswer);
 			request.setAttribute("user",customer);
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);

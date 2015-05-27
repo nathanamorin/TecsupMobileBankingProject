@@ -78,7 +78,7 @@ public class Login extends HttpServlet {
 		else if (customer.loggedIn == false)
 		{
 			request.setAttribute("RESUL", "Please Provide Security Question");
-			//System.out.println("Response - " + securityQuestionID.toString() + securityAnswer);
+			System.out.println("Response - " + securityQuestionID.toString() + securityAnswer);
 			request.setAttribute("user",customer);
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);

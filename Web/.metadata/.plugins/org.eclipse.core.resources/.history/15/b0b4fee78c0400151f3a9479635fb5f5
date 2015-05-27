@@ -43,12 +43,7 @@ public class Login extends HttpServlet {
 		System.out.println("login request");
 		String username = (String) request.getParameter("username");
 		String password = (String) request.getParameter("password");
-		String securityQuestionIDStr = request.getParameter("securityQuestionID");
-		Integer securityQuestionID = null;
-		if (securityQuestionIDStr != null) 
-		{
-			securityQuestionID = Integer.parseInt( securityQuestionIDStr);
-		}
+		String securityQuestionID = request.getParameter("securityQuestionID");
 		String securityAnswer = (String) request.getParameter("securityAnswer");
 		
 		request.setAttribute("securityQuestion",null);
@@ -58,7 +53,7 @@ public class Login extends HttpServlet {
 		
 		try {
 			
-			customer = l.doLogin(username, password, securityQuestionID, securityAnswer);
+			customer = l.doLogin(username, password, Integer.parseInt( securityQuestionID), securityAnswer);
 		} 
 		catch (DAOExcepcion e) {
 			// TODO Auto-generated catch block
@@ -78,7 +73,7 @@ public class Login extends HttpServlet {
 		else if (customer.loggedIn == false)
 		{
 			request.setAttribute("RESUL", "Please Provide Security Question");
-			//System.out.println("Response - " + securityQuestionID.toString() + securityAnswer);
+			System.out.println("Response - " + securityQuestionID.toString() + securityAnswer);
 			request.setAttribute("user",customer);
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);

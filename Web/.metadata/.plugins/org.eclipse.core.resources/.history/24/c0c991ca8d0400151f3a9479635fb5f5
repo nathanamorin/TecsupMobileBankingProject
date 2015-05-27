@@ -63,8 +63,8 @@
 											else if (customer.loggedIn == false)
 												{
 													SecurityQuestion question = customer.getRandomSecurityQuestion();
-													out.println( " <input type=hidden id=username name=username value=" + customer.getIdUser() + ">");
-													out.println( " <input type=hidden id=password name=password value=" + customer.getPassword() + ">");
+													out.println( " <input type=hidden id=username name=username value=" + customer.getIdUser());
+													out.println( " <input type=hidden id=password name=password value=" + customer.getPassword());
 													out.println( "<h3>SecurityQuestion</h3> <input type=hidden id=securityQuestionID name=securityQuestionID value=");
 													out.println(question.getIdQuestion());
 													out.println("><h3>");
