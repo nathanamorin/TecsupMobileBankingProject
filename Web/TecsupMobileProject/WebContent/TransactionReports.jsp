@@ -1,3 +1,5 @@
+<%@page import="java.util.*,BankServices.modelo.CheckingAccount"%>
+<%@page import="java.util.*,BankServices.business.GCheckingAccount"%>
 <%@page import="java.util.*,BankServices.modelo.Transaction"%>
 <%@page import="java.util.*,BankLogic.TransactionLogic"%>
 <!DOCTYPE HTML>
@@ -153,8 +155,25 @@
 								<th>Available</th>
 							</tr>
 							<%
+							
+							GCheckingAccount negocio = new GCheckingAccount();
+								Collection c = null;
 
+								c = negocio.mostrar();
+
+								if (c != null) {
+									for (Iterator i = c.iterator(); i.hasNext();) {
+										CheckingAccount ch = (CheckingAccount) i.next();
+										
+										out.println("<tr><td>" + ch.getAccountNumber() + "</td>");
+										out.println("<td>" + ch.getCurrenBal() + "</td>");										
+										out.println("<td>" + ch.getStatus() + "</td>");										
+										out.println("<td>" + ch.getAvailableBal() + "</td></tr>");
+
+									}
+								}
 							%>
+							
 						</table>
 
 
