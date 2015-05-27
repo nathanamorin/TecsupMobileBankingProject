@@ -2,8 +2,10 @@ package edu.purdue.tech.tecsupmobilebankingproject;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,8 +13,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
-
+import android.content.Intent;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,6 +147,58 @@ public class Withdrawal extends ActionBarActivity {
 
 
         return true;
+    }
+
+
+    private class ClienteREST extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            Log.i("ProductosBuscarREST", "Dentro de doInBackground()");
+
+
+            TextView txtAccountNum = (TextView) findViewById(R.id.txtAccountNum);
+            final TextView txtAmount = (TextView) findViewById(R.id.txtAmount);
+
+            try {
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPost post = new HttpPost("http://192.168.19.25:8080/TecsupMobileProject/rest/withdrawal");
+                post.setHeader("content-type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
+
+                List<NameValuePair> nameValuePairs = new ArrayList<>(2);
+
+
+                nameValuePairs.add(new BasicNameValuePair("txtAccountNum", txtAccountNum.getText().toString()));
+                nameValuePairs.add(new BasicNameValuePair("txtAmount", txtAmount.getText().toString()));
+                post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                HttpResponse resp = httpClient.execute(post);
+                String jsontext = EntityUtils.toString(resp.getEntity());
+                Log.i("Prty", "------>" + jsontext);
+
+                JSONObject entries = new JSONObject(jsontext);
+
+                String x = entries.getString("return");
+
+
+
+
+                if(x.equals("errorPassword")){
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(Withdrawal.this, "Wrong password", Toast.LENGTH_LONG).show();
+                            txtAmount.setText("");
+                        }
+                    });
+                }
+
+
+            } catch (Exception ex) {
+                Log.e("ProductosBuscarREST", "Error: " + ex);
+            }
+            return null;
+        }
     }
 
 
